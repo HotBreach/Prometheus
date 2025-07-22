@@ -32,7 +32,7 @@ services:
       - '--config.file=/etc/prometheus/prometheus.yml'
     depends_on:
       - loki
-      - elasticsearch
+
 
   loki:
     image: grafana/loki
@@ -41,16 +41,6 @@ services:
       - "3100:3100"
     command: -config.file=/etc/loki/local-config.yaml
 
-  elasticsearch:
-    image: docker.io/library/elasticsearch:8.12.2
-    container_name: elasticsearch
-    environment:
-      - discovery.type=single-node
-      - xpack.security.enabled=false
-    ports:
-      - "9200:9200"
-    volumes:
-      - esdata:/usr/share/elasticsearch/data
 
   promtail:
     image: grafana/promtail
@@ -78,4 +68,3 @@ services:
 
 volumes:
   grafana_data:
-  esdata:
