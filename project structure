@@ -1,0 +1,13 @@
+monitoring/
+├── docker-compose.yml
+├── grafana/
+│   ├── grafana.ini
+│   └── certs/
+│       ├── cert.pem
+│       └── key.pem
+├── prometheus/
+│   ├── prometheus.yml
+│   └── certs/
+│       ├── cert.pem
+│       └── key.pem
+
