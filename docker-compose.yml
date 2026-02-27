@@ -8,16 +8,16 @@ services:
       - "443:3000"
     volumes:
       - ./grafana/grafana.ini:/etc/grafana/grafana.ini
-      - ./grafana/ldap.toml:/etc/grafana/ldap.toml:ro
+      # - ./grafana/ldap.toml:/etc/grafana/ldap.toml:ro
       - ./grafana/certs:/etc/grafana/certs
       - grafana_data:/var/lib/grafana
     environment:
       - GF_SERVER_PROTOCOL=https
       - GF_SERVER_CERT_FILE=/etc/grafana/certs/cert.crt
       - GF_SERVER_CERT_KEY=/etc/grafana/certs/key.key
-      - GF_AUTH_LDAP_ENABLED=true
-      - GF_AUTH_LDAP_CONFIG_FILE=/etc/grafana/ldap.toml
-      - GF_AUTH_LDAP_ALLOW_SIGN_UP=true
+      # - GF_AUTH_LDAP_ENABLED=true
+      # - GF_AUTH_LDAP_CONFIG_FILE=/etc/grafana/ldap.toml
+      # - GF_AUTH_LDAP_ALLOW_SIGN_UP=true
     depends_on:
       - loki
       - prometheus
