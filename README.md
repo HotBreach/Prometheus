@@ -72,11 +72,13 @@ Grafana использует TLS. Сертификат выпускается ч
 ```bash
 cd grafana/certs
 
-openssl req -new \
+openssl req -new -nodes \
   -config openssl.conf \
   -keyout key.key \
   -out grafana.csr
 ```
+
+> ⚠️ Флаг `-nodes` обязателен — он отключает шифрование приватного ключа паролем. Без него OpenSSL запросит PEM passphrase, и если оставить поле пустым, команда завершится ошибкой `result too small`. Кроме того, зашифрованный ключ потребует ручного ввода пароля при каждом старте Grafana.
 
 После выполнения появятся два файла:
 
