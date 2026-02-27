@@ -1,7 +1,7 @@
 # grafana/ldap.toml
 [[servers]]
 # Адрес контроллера AD (можно указать несколько, разделив запятыми)
-host = "optima.inside"
+host = "dc.domain.example"
 port = 389                # 636 – если используешь LDAPS
 use_ssl = false           # true, если LDAPS
 start_tls = false
