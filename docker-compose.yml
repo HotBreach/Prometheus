@@ -16,6 +16,7 @@ services:
       # - GF_AUTH_LDAP_ENABLED=true
       # - GF_AUTH_LDAP_CONFIG_FILE=/etc/grafana/ldap.toml
       # - GF_AUTH_LDAP_ALLOW_SIGN_UP=true
+    restart: unless-stopped
     depends_on:
       - loki
       - prometheus
@@ -29,6 +30,7 @@ services:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
+    restart: unless-stopped
     depends_on:
       - loki
 
@@ -39,6 +41,7 @@ services:
     ports:
       - "3100:3100"
     command: -config.file=/etc/loki/local-config.yaml
+    restart: unless-stopped
 
 
   promtail:
@@ -52,6 +55,7 @@ services:
       - ./promtail/promtail-config.yaml:/etc/promtail/config.yml
       - /var/run/docker.sock:/var/run/docker.sock
     command: -config.file=/etc/promtail/config.yml
+    restart: unless-stopped
     depends_on:
       - loki
 
